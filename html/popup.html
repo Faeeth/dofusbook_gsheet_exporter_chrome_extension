@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Popup Dofus</title>
+  <style>
+    body {
+      margin-top: 40px;
+      font-family: Arial, sans-serif;
+      background-color: #2e2924;
+      color: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .container {
+      display: flex;
+      gap: 10px; /* Espacement entre les blocs */
+      width: 1200px;
+    }
+
+    .left-blocks .stat-line {
+      align-items: center;
+    }
+    
+    .left-blocks .stat-line .stat-value {
+        font-weight: bold;
+    }
+
+    .left-blocks .stat-line img {
+      width: 24px;
+      height: 24px;
+      vertical-align: middle;
+    }
+
+    .right-block {
+      margin-top: 10px;
+      position: relative;
+      display: block;
+      background-color: #3c3630;
+      padding: 10px;
+      height: 415px;
+      width: 450px;
+      background-color: #3c3630;
+      border-radius: 5px;
+    }
+
+    .block {
+      margin: 10px;
+      background-color: #3c3630;
+      padding: 10px;
+      border-radius: 5px;
+    }
+
+    .right-block .item {
+      background-color: #2e2924;
+      border: 2px solid #3c3630;
+      border-radius: 5px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .right-block .item img {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+    }
+
+    .characteristic {
+      display: flex;
+      align-items: center;
+      margin-bottom: 5px;
+    }
+
+    .characteristic img {
+      width: 20px;
+      height: 20px;
+      margin-right: 10px;
+    }
+
+    .left-column, .right-column {
+      position: absolute;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .left-column {
+      left: 20px;
+      top: 50px;
+    }
+
+    .right-column {
+      left: 390px;
+      top: 50px;
+    }
+
+    .item-slot {
+      background-color: #4a433b;
+      width: 50px;
+      height: 50px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border: 2px solid #2e2924;
+      transition: border-color .3s ease-in-out;
+    }
+
+    .item-slot img {
+      max-width: 80%;
+      max-height: 80%;
+      object-fit: contain;
+    }
+
+    .character-image {
+      position: absolute;
+      top: 50px;
+      left: 90px;
+      width: 280px;
+      height: 305px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .character-image img {
+      max-width: 90%;
+      max-height: 90%;
+      object-fit: contain;
+    }
+
+    .bottom-row {
+      position: absolute;
+      top: 370px;
+      left: 20px;
+      display: flex;
+      gap: 20px;
+    }
+
+    .bottom-slot {
+      background-color: #4a433b;
+      width: 50px;
+      height: 50px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border: 2px solid #2e2924;
+      transition: border-color .3s ease-in-out;
+    }
+
+    .bottom-slot img {
+      max-width: 80%;
+      max-height: 80%;
+      object-fit: contain;
+    }
+    .right-block .stuff-name {
+        font-weight: bold;
+        font-size: 15px;
+        float: left;
+    }
+
+    .right-block .stuff-level {
+        font-weight: bold;
+        font-size: 15px;
+        float: right;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- Blocs de gauche -->
+    <div class="left-blocks">
+      <div class="block" id="characteristics-block-1"></div>
+      <div class="block" id="characteristics-block-2"></div>
+      <div class="block" id="characteristics-block-3"></div>
+    </div>
+
+    <!-- Bloc de droite -->
+    <div class="right-block" id="stuff-block">
+        <!-- Nom du stuff -->
+         <span id="stuff-name" class="stuff-name"></span>
+        <!-- Niveau du stuff -->
+        <span id="stuff-level" class="stuff-level"></span>
+        <!-- Colonne gauche -->
+        <div class="left-column">
+            <div class="item-slot"><img id="item-amulette" src="" alt=" "></div>
+            <div class="item-slot"><img id="item-bouclier" src="" alt=" "></div>
+            <div class="item-slot"><img id="item-anneau-gauche" src="" alt=" "></div>
+            <div class="item-slot"><img id="item-ceinture" src="" alt=" "></div>
+            <div class="item-slot"><img id="item-bottes" src="" alt=" "></div>
+        </div>
+
+        <!-- Image centrale -->
+        <div class="character-image">
+            <img id="img-character" src="" alt=" ">
+        </div>
+
+        <!-- Colonne droite -->
+        <div class="right-column">
+            <div class="item-slot"><img id="item-chapeau" src="" alt=" "></div>
+            <div class="item-slot"><img id="item-cac" src="" alt=" "></div>
+            <div class="item-slot"><img id="item-anneau-droit" src="" alt=" "></div>
+            <div class="item-slot"><img id="item-cape" src="" alt=" "></div>
+            <div class="item-slot"><img id="item-monture" src="" alt=" "></div>
+        </div>
+
+        <!-- Barre du bas -->
+        <div class="bottom-row">
+            <div class="bottom-slot"><img id="item-extra-1" src="" alt=" "></div>
+            <div class="bottom-slot"><img id="item-extra-2" src="" alt=" "></div>
+            <div class="bottom-slot"><img id="item-extra-3" src="" alt=" "></div>
+            <div class="bottom-slot"><img id="item-extra-4" src="" alt=" "></div>
+            <div class="bottom-slot"><img id="item-extra-5" src="" alt=" "></div>
+            <div class="bottom-slot"><img id="item-extra-6" src="" alt=" "></div>
+        </div>
+    </div>
+  </div>
+
+  <script src="../scripts/popup.js"></script>
+</body>
+</html>
